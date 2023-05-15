@@ -101,7 +101,11 @@ const Home: NextPage = () => {
               <SelectShowDetails control={control} />
 
               {/* payment details */}
-              <PaymentDetails register={register} />
+              <PaymentDetails
+                register={register}
+                getValues={getValues}
+                control={control}
+              />
 
               {/* summary */}
               <OrderDetails
@@ -115,7 +119,7 @@ const Home: NextPage = () => {
           </form>
           <button
             className="h-5 w-5 bg-red-100"
-            onClick={() => console.log(getValues())}
+            onClick={() => console.log(getValues("card"))}
           />
         </div>
       </main>
