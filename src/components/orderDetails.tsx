@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 import { mockShows } from "~/utils/mockdata";
 import { type Option } from "~/types/types";
@@ -8,6 +8,7 @@ import {
   Controller,
   type FieldValues,
   type UseFormReset,
+  UseFormGetValues,
 } from "react-hook-form";
 import Button from "./button";
 import { getTotalPrice } from "~/utils/paymentFormating";
@@ -17,6 +18,7 @@ interface OrderDetailsProps {
   ticketQuantity: Option | undefined;
   control: Control;
   reset: UseFormReset<FieldValues>;
+  getValues: UseFormGetValues<FieldValues>;
 }
 
 const OrderDetails: React.FC<OrderDetailsProps> = ({
@@ -24,9 +26,11 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
   showInfo,
   control,
   reset,
+  getValues,
 }) => {
   const hasShowId = !!showInfo?.value;
   const hasTicketQuantity = !!ticketQuantity?.value;
+
   return (
     <>
       <div className="bg-gray col-span-2 col-start-4 row-span-4 row-start-1 rounded-md border-2 border-gray-300 bg-white p-4 text-black ">
@@ -110,12 +114,22 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
             *All Sales Final - No Refunds
           </p>
           <div>
-            <Controller
-              name="terms"
-              control={control}
-              render={({ field }) => <input type="checkbox" {...field} />}
-              rules={{ required: true }}
-            />{" "}
+            <span className="">
+              <Controller
+                name="terms"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    className={` ${
+                      !getValues("terms") ? "ring-2 ring-blue-500" : ""
+                    }`}
+                    type="checkbox"
+                    {...field}
+                  />
+                )}
+                rules={{ required: true }}
+              />
+            </span>{" "}
             <span className="text-sm font-semibold">
               I have read and agree to the current{" "}
               <span className="text-blue-600">Terms of Use</span>.

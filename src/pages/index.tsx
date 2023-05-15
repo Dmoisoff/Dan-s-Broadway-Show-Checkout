@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import SelectShowDetails from "~/components/selectShowDetails";
 import PaymentDetails from "~/components/paymentDetails";
 import OrderDetails from "~/components/orderDetails";
@@ -11,7 +11,7 @@ import { getTotalPrice } from "~/utils/paymentFormating";
 type WatchedFields = Option[];
 
 const Home: NextPage = () => {
-  const { register, handleSubmit, getValues, control, reset } = useForm();
+  const { register, handleSubmit, control, reset, getValues } = useForm();
 
   const watchedFields: WatchedFields = useWatch({
     control,
@@ -109,6 +109,7 @@ const Home: NextPage = () => {
                 ticketQuantity={ticketQuantity}
                 control={control}
                 reset={reset}
+                getValues={getValues}
               />
             </div>
           </form>
