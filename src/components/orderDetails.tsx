@@ -1,7 +1,7 @@
 import React from "react";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 import { mockShows } from "~/utils/mockdata";
-import { Shows, type Option } from "~/types/types";
+import { type Option } from "~/types/types";
 import Link from "next/link";
 import {
   type Control,
@@ -29,9 +29,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
   const hasTicketQuantity = !!ticketQuantity?.value;
   return (
     <>
-      <div className="bg-gray col-span-2 col-start-4 row-span-4 row-start-1 rounded-md border-2 border-gray-300 bg-white p-4 text-black">
-        {/* total */}
-        <div className="flex justify-between pb-4">
+      <div className="bg-gray col-span-2 col-start-4 row-span-4 row-start-1 rounded-md border-2 border-gray-300 bg-white p-4 text-black ">
+        <div className="font-Roboto flex justify-between pb-4 text-lg font-semibold">
           <h4>Total</h4>
           <div>
             {hasShowId && ticketQuantity
@@ -43,10 +42,10 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
               : `$${SERVICE_FEE + PROCESSING_FEE}`}
           </div>
         </div>
-        {/* tickets total */}
-        <div className="flex justify-between pb-4">
-          <h4>Tickets</h4>
-          <div>
+
+        <div className="font-Roboto flex justify-between pb-4">
+          <h4 className="font-semibold">Tickets</h4>
+          <div className="text-sm font-light">
             {hasShowId && hasTicketQuantity
               ? `$${mockShows[showInfo?.value]?.price || 0} x ${
                   ticketQuantity.value
@@ -54,13 +53,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
               : "..."}
           </div>
         </div>
-        {/* notes */}
-        <div>
-          <p>Notes About Show</p>
+
+        <div className=" pb-4">
+          <p className="font-Roboto pb-2 font-semibold">Notes About Show</p>
           <div className="min-h-20 h-20 max-h-20 overflow-auto">
             <div className="min-h-20 h-20 max-h-20 overflow-auto border-4 border-gray-200">
               {hasShowId ? (
-                <p className="pl-2">{mockShows[showInfo?.value]?.note}</p>
+                <p className="pl-2 text-sm font-light">
+                  {mockShows[showInfo?.value]?.note}
+                </p>
               ) : (
                 <p className="text-sm text-gray-500">Please Select A Show...</p>
               )}
@@ -70,48 +71,55 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
 
         {/* fees */}
         <div>
-          <h3>Fees</h3>
-          <div className="flex justify-between pb-4">
-            <p>
-              Service Fee: ${SERVICE_FEE}{" "}
-              {hasTicketQuantity ? `x ${ticketQuantity?.value}` : "x 1"}
-            </p>
-            {hasTicketQuantity
-              ? `$${ticketQuantity.value * SERVICE_FEE}`
-              : `$${SERVICE_FEE}`}
+          <h3 className="font-Roboto pb-2 font-semibold">Fees</h3>
+          <div>
+            <div className="flex justify-between">
+              <p className="font-Roboto text-sm font-light">
+                Service Fee: ${SERVICE_FEE}{" "}
+                {hasTicketQuantity ? `x ${ticketQuantity?.value}` : "x 1"}
+              </p>
+              <p className="font-Roboto text-sm font-light">
+                {hasTicketQuantity
+                  ? `$${ticketQuantity.value * SERVICE_FEE}`
+                  : `$${SERVICE_FEE}`}
+              </p>
+            </div>
+            <div className="flex justify-between pb-4">
+              <p className="font-Roboto text-sm font-light">Order Processing Fee</p>
+              <p className="font-Roboto text-sm font-light">${PROCESSING_FEE}</p>
+            </div>
           </div>
         </div>
+
+        <h3 className="font-Roboto pb-2 font-semibold">Delivery</h3>
         <div className="flex justify-between pb-4">
-          <p>Order Processing Fee</p>
-          <p>${PROCESSING_FEE}</p>
+          <p className="font-Roboto text-sm font-light">Moblie Entry</p>
+          <p className="font-Roboto text-sm font-light">Free!</p>
         </div>
-        {/* delivery */}
-        <div className="flex justify-between pb-4">
-          <p>Delivery</p>
-          <p>Free!</p>
-        </div>
-        {/* cancel */}
-        <div className=" pb-4">
+
+        <div className="pb-6 text-blue-600 font-Roboto text-sm  font-semibold">
           <Link href="" onClick={() => reset({ show: "", ticketQuantity: 0 })}>
             Reset Order
           </Link>
         </div>
-        {/* terms of service */}
+
         <div className="pb-4">
-          <p className="pb-2">*All Sales Final - No Refunds</p>
-          <p>
+          <p className="pb-2 text-sm font-semibold">*All Sales Final - No Refunds</p>
+          <div>
             <Controller
               name="terms"
               control={control}
               render={({ field }) => <input type="checkbox" {...field} />}
               rules={{ required: true }}
             />{" "}
-            I have read and agree to the current Terms of Use.
-          </p>
+            <span className="text-sm font-semibold">I have read and agree to the current{" "}
+            <span className="text-blue-600">Terms of Use</span>.
+            </span>
+          </div>
         </div>
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly pb-4">
           <Button
-            className="w-11/12 bg-green-600"
+            className="w-11/12 bg-green-600 h-10 text-white"
             onClick={() => {
               return;
             }}
@@ -122,7 +130,10 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         </div>
 
         <div>
-          <p>Expections may apply, see our Terms of Use.</p>
+          <p className="font-semibold text-[10px]">
+            *Expections may apply, see our{" "}
+            <span className="text-blue-600">Terms of Use</span>.
+          </p>
         </div>
       </div>
     </>
