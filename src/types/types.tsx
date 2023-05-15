@@ -8,3 +8,8 @@ export type Show = {
 export type Shows = {
   [id: number]: Show;
 };
+
+export type Options = {
+  value: number;
+  label: number;
+};

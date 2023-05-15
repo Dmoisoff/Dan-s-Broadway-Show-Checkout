@@ -1,4 +1,4 @@
-import { Shows } from "~/types/show";
+import { Shows } from "~/types/types";
 
 const showNames = [
   "Hamilton",
