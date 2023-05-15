@@ -52,13 +52,13 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         <div>
           <p>Notes About Show</p>
           <div className="min-h-20 h-20 max-h-20 overflow-auto">
-            <p className="min-h-20 h-20 max-h-20 border-2 border-gray-100">
+            <div className="min-h-20 h-20 max-h-20 overflow-auto border-2 border-gray-100">
               {showInfo ? (
-                mockShows[showInfo?.value]?.note
+                <p>{mockShows[showInfo?.value]?.note}</p>
               ) : (
                 <p className="text-sm text-gray-500">Please Select A Show...</p>
               )}
-            </p>
+            </div>
           </div>
         </div>
 
