@@ -10,6 +10,8 @@ import Select from "react-select";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 import { useRef } from "react";
 import Button from "~/components/button";
+import { formatDate, formatCard } from "~/utils/paymentformating";
+import SelectShowDetails from "~/components/selectShowDetails";
 
 type ShowOption = {
   value: number;
@@ -28,13 +30,7 @@ const Home: NextPage = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    // event.preventDefault();
-    // const formData = new FormData(event.target);
-    // const data = Object.fromEntries(formData.entries());
-    // console.log(data);
   };
-
-  // const onError = (errors, e) => console.log(errors, e);
 
   const watchedFields: WatchedFields = useWatch({
     control,
@@ -52,20 +48,6 @@ const Home: NextPage = () => {
 
   const [showInfo, ticketQuantity] = watchedFields;
 
-  // const formRef = useRef(null);
-
-  // const handleButtonClick = () => {
-  //   formRef.current.submit(); // Programmatically trigger form submission
-  // };
-
-  // util function
-  const formatDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue: string = event?.target?.value;
-    const cleanedValue = inputValue.replace(/\D/g, "");
-    const formattedValue = cleanedValue.replace(/^(\d{2})/, "$1/");
-    event.target.value = formattedValue;
-  };
-
   return (
     <>
       <Head>
@@ -78,61 +60,13 @@ const Home: NextPage = () => {
           </h1>
         </div>
 
-        <div className="h-screen w-9/12 overflow-visible bg-gray-400">
+        <div className="h-screen w-9/12">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid h-5/6 grid-cols-5 grid-rows-5 gap-4">
               {/* show picker */}
-              <div className="max-w-l bg-gray col-span-3 rounded-md border-gray-300 bg-red-500 p-4 text-black">
-                <h3 className="flex justify-around text-2xl font-bold">
-                  Select Show Details
-                </h3>
-                <div className="flex w-full justify-evenly pt-4">
-                  {/*  */}
-                  <div>
-                    <div className=" flex w-8/12 flex-row items-center ">
-                      <h6 className="text-1xl pr-2">Show:</h6>
-                      <Controller
-                        name="show"
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            {...field}
-                            classNames={{
-                              control: () =>
-                                "border border-gray-300 rounded-md w-48",
-                            }}
-                            options={dropDownOptions}
-                            placeholder={"Select Show..."}
-                          />
-                        )}
-                        rules={{ required: true }}
-                      />
-                    </div>
-                  </div>
 
-                  <div className=" flex w-4/12 flex-row items-center ">
-                    <h6 className="text-1xl pr-2">Ticket Quantity:</h6>
-                    <Controller
-                      name="ticketQuantity"
-                      control={control}
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          classNames={{
-                            control: () => "border border-gray-300 rounded-md",
-                          }}
-                          options={[1, 2, 3, 4].map((item) => ({
-                            value: item,
-                            label: item,
-                          }))}
-                          placeholder={"0"}
-                        />
-                      )}
-                      rules={{ required: true }}
-                    />
-                  </div>
-                </div>
-              </div>
+              <SelectShowDetails control={control} />
+
               {/* payment details */}
               <div className="bg-gray row-start-23 col-span-3 col-start-1 row-span-3 rounded-md border-gray-300 bg-green-500 p-4 text-black">
                 <p className="flex justify-around text-2xl font-bold">
@@ -158,13 +92,12 @@ const Home: NextPage = () => {
                     type="tel"
                     className="h-12 w-full border-2 px-2 pl-7 outline-none transition-all focus:border-blue-900 "
                     placeholder="0000 0000 0000 0000"
-                    data-slots="0"
-                    data-accept="\d"
                     maxLength={19}
                     minLength={12}
                     {...register("card", {
                       required: true,
                     })}
+                    onChange={formatCard}
                   />
                   <span className="absolute -top-6 left-0 text-sm">
                     Card Number
