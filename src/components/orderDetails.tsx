@@ -10,7 +10,7 @@ import {
   type UseFormReset,
 } from "react-hook-form";
 import Button from "./button";
-import { getTotalPrice } from "~/utils/paymentformating";
+import { getTotalPrice } from "~/utils/paymentFormating";
 
 interface OrderDetailsProps {
   showInfo: Options | undefined;
@@ -35,8 +35,12 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
           <h4>Total</h4>
           <div>
             {hasShowId && ticketQuantity
-              ? getTotalPrice(mockShows, ticketQuantity, showInfo)
-              : SERVICE_FEE + PROCESSING_FEE}
+              ? `$${getTotalPrice(
+                  mockShows,
+                  ticketQuantity.value,
+                  showInfo.value
+                ).toFixed(2)}`
+              : `$${SERVICE_FEE + PROCESSING_FEE}`}
           </div>
         </div>
         {/* tickets total */}
@@ -44,7 +48,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
           <h4>Tickets</h4>
           <div>
             {hasShowId && hasTicketQuantity
-              ? `Tickets: $${mockShows[showInfo?.value]?.price || 0} x ${
+              ? `$${mockShows[showInfo?.value]?.price || 0} x ${
                   ticketQuantity.value
                 }`
               : "..."}
@@ -54,9 +58,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         <div>
           <p>Notes About Show</p>
           <div className="min-h-20 h-20 max-h-20 overflow-auto">
-            <div className="min-h-20 h-20 max-h-20 overflow-auto border-2 border-gray-100">
+            <div className="min-h-20 h-20 max-h-20 overflow-auto border-4 border-gray-200">
               {hasShowId ? (
-                <p>{mockShows[showInfo?.value]?.note}</p>
+                <p className="pl-2">{mockShows[showInfo?.value]?.note}</p>
               ) : (
                 <p className="text-sm text-gray-500">Please Select A Show...</p>
               )}
@@ -74,7 +78,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
             </p>
             {hasTicketQuantity
               ? `$${ticketQuantity.value * SERVICE_FEE}`
-              : SERVICE_FEE}
+              : `$${SERVICE_FEE}`}
           </div>
         </div>
         <div className="flex justify-between pb-4">

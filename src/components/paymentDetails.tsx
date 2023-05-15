@@ -1,6 +1,6 @@
 import React from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form";
-import { formatCard, formatDate } from "~/utils/paymentformating";
+import { formatCard, formatDate } from "~/utils/paymentFormating";
 
 interface PaymentDetailsProps {
   register: UseFormRegister<FieldValues>;

@@ -1,4 +1,4 @@
-import { Shows, type Options } from "~/types/types";
+import { Shows } from "~/types/types";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 
 export const formatDate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +19,12 @@ export const formatCard = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 export const getTotalPrice = (
   mockShows: Shows,
-  ticketQuantity: Options,
-  showInfo: Options
+  ticketQuantity: number,
+  showInfo: number
 ) => {
   return (
-    (mockShows[showInfo?.value]?.price || 0) * ticketQuantity.value +
-    (ticketQuantity.value * SERVICE_FEE || SERVICE_FEE) +
+    (mockShows[showInfo]?.price || 0) * ticketQuantity +
+    (ticketQuantity * SERVICE_FEE || SERVICE_FEE) +
     PROCESSING_FEE
-  ).toFixed(2);
+  );
 };
