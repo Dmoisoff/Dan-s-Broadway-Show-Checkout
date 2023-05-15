@@ -17,6 +17,12 @@ export const formatCard = (event: React.ChangeEvent<HTMLInputElement>) => {
   event.target.value = formattedValue;
 };
 
+export const formatCVV = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const inputValue: string = event?.target?.value;
+  const numericValue = inputValue.replace(/\D/g, "");
+  event.target.value = numericValue;
+}
+
 export const getTotalPrice = (
   mockShows: Shows,
   ticketQuantity: number,

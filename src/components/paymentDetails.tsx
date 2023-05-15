@@ -1,6 +1,6 @@
 import React from "react";
 import { UseFormRegister, FieldValues } from "react-hook-form";
-import { formatCard, formatDate } from "~/utils/paymentFormating";
+import { formatCard, formatDate, formatCVV } from "~/utils/paymentFormating";
 
 interface PaymentDetailsProps {
   register: UseFormRegister<FieldValues>;
@@ -67,6 +67,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({ register }) => {
             {...register("cvv", {
               required: true,
             })}
+            onChange={formatCVV}
           />{" "}
           <span className="absolute -top-6 left-0 text-sm">CVV</span>{" "}
           <i className="fa fa-lock absolute left-2 top-4 text-gray-400"></i>{" "}

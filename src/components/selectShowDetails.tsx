@@ -15,7 +15,7 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
   }));
 
   return (
-    <div className="max-w-l bg-gray col-span-3 rounded-md border-2 border-gray-300 bg-white p-4 text-black">
+    <div className="max-w-l bg-gray col-span-3 min-w-[614px] rounded-md border-2 border-gray-300 bg-white p-4 text-black">
       <h3 className="flex justify-around text-2xl font-bold">
         Select Show Details
       </h3>

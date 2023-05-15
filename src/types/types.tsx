@@ -9,7 +9,17 @@ export type Shows = {
   [id: number]: Show;
 };
 
-export type Options = {
+export type Option = {
   value: number;
   label: number;
+};
+
+export type OrderData = {
+  card: string;
+  name: string;
+  cvv: string;
+  expiry: string;
+  show: Option;
+  terms: boolean;
+  ticketQuantity: Option;
 };

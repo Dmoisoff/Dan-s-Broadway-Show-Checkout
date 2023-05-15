@@ -1,23 +1,18 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { mockShows } from "~/utils/mockdata";
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
-import Button from "~/components/button";
 import SelectShowDetails from "~/components/selectShowDetails";
 import PaymentDetails from "~/components/paymentDetails";
 import OrderDetails from "~/components/orderDetails";
-import { type Options } from "~/types/types";
+import { type Option, type OrderData } from "~/types/types";
+import { mockShows } from "~/utils/mockdata";
+import { getTotalPrice } from "~/utils/paymentFormating";
+import { number } from "zod";
 
-type WatchedFields = Options[];
+type WatchedFields = Option[];
 
 const Home: NextPage = () => {
   const { register, handleSubmit, getValues, control, reset } = useForm();
-
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-  };
 
   const watchedFields: WatchedFields = useWatch({
     control,
@@ -28,27 +23,80 @@ const Home: NextPage = () => {
     },
   });
 
-  const resetShowInfo = () => {
-    reset({ show: "", ticketQuantity: 0 });
+  const [showInfo, ticketQuantity] = watchedFields;
+
+  const onSubmit = (data: OrderData) => {
+    // call payment and wait for response
+    const res = handlePaymentSubmit(data);
+    if (res.status === 200) {
+      // send info to backend
+      console.log(data);
+      alert("payment successful");
+    } else {
+      console.error("Error");
+    }
   };
 
-  const [showInfo, ticketQuantity] = watchedFields;
+  const handlePaymentSubmit = ({
+    card,
+    name,
+    cvv,
+    expiry,
+  }: {
+    card: string;
+    name: string;
+    cvv: string;
+    expiry: string;
+  }): { status: number } => {
+    // fake payment function
+    try {
+      if (!ticketQuantity || !showInfo) {
+        throw new Error("Error with show or ticket selection");
+      }
+      const cost = Number(
+        getTotalPrice(mockShows, ticketQuantity.value, showInfo.value).toFixed(
+          2
+        )
+      );
+      const paymentPackage = {
+        card,
+        name,
+        cvv,
+        expiry,
+        cost,
+      };
+      console.log(paymentPackage);
+      // fake api call
+      // const response = await fetch("https://example.com/payment", {
+      //   method: "POST",
+      //   body: JSON.stringify({ paymentPackage }),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      return { status: 200 };
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return { status: 400 };
+    }
+  };
 
   return (
     <>
       <Head>
         <title>Mock Checkout Page</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-        <div className="">
-          <h1 className="gap-12 px-4 py-16 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem]">
-            Mock <span className="text-[hsl(280,100%,70%)]">Checkout</span> Page
-          </h1>
-        </div>
 
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
         <div className="h-screen w-9/12">
+          <div className="flex min-w-[1150px] justify-center">
+            <h1 className="gap-12 px-4 py-16 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem]">
+              Mock <span className="text-[hsl(280,100%,70%)]">Checkout</span>{" "}
+              Page
+            </h1>
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid h-5/6 grid-cols-5 grid-rows-5 gap-4">
+            <div className=" grid h-5/6 min-w-[1150px] grid-cols-5 grid-rows-5 gap-4">
               {/* show picker */}
 
               <SelectShowDetails control={control} />

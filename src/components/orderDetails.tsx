@@ -1,7 +1,7 @@
 import React from "react";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 import { mockShows } from "~/utils/mockdata";
-import { Shows, type Options } from "~/types/types";
+import { Shows, type Option } from "~/types/types";
 import Link from "next/link";
 import {
   type Control,
@@ -13,8 +13,8 @@ import Button from "./button";
 import { getTotalPrice } from "~/utils/paymentFormating";
 
 interface OrderDetailsProps {
-  showInfo: Options | undefined;
-  ticketQuantity: Options | undefined;
+  showInfo: Option | undefined;
+  ticketQuantity: Option | undefined;
   control: Control;
   reset: UseFormReset<FieldValues>;
 }
