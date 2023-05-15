@@ -68,8 +68,6 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
             </div>
           </div>
         </div>
-
-        {/* fees */}
         <div>
           <h3 className="font-Roboto pb-2 font-semibold">Fees</h3>
           <div>
@@ -85,8 +83,12 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
               </p>
             </div>
             <div className="flex justify-between pb-4">
-              <p className="font-Roboto text-sm font-light">Order Processing Fee</p>
-              <p className="font-Roboto text-sm font-light">${PROCESSING_FEE}</p>
+              <p className="font-Roboto text-sm font-light">
+                Order Processing Fee
+              </p>
+              <p className="font-Roboto text-sm font-light">
+                ${PROCESSING_FEE}
+              </p>
             </div>
           </div>
         </div>
@@ -97,14 +99,16 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
           <p className="font-Roboto text-sm font-light">Free!</p>
         </div>
 
-        <div className="pb-6 text-blue-600 font-Roboto text-sm  font-semibold">
+        <div className="font-Roboto pb-6 text-sm font-semibold  text-blue-600">
           <Link href="" onClick={() => reset({ show: "", ticketQuantity: 0 })}>
             Reset Order
           </Link>
         </div>
 
         <div className="pb-4">
-          <p className="pb-2 text-sm font-semibold">*All Sales Final - No Refunds</p>
+          <p className="pb-2 text-sm font-semibold">
+            *All Sales Final - No Refunds
+          </p>
           <div>
             <Controller
               name="terms"
@@ -112,14 +116,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
               render={({ field }) => <input type="checkbox" {...field} />}
               rules={{ required: true }}
             />{" "}
-            <span className="text-sm font-semibold">I have read and agree to the current{" "}
-            <span className="text-blue-600">Terms of Use</span>.
+            <span className="text-sm font-semibold">
+              I have read and agree to the current{" "}
+              <span className="text-blue-600">Terms of Use</span>.
             </span>
           </div>
         </div>
         <div className="flex justify-evenly pb-4">
           <Button
-            className="w-11/12 bg-green-600 h-10 text-white"
+            className="h-10 w-11/12 bg-green-600 text-white"
             onClick={() => {
               return;
             }}
@@ -130,7 +135,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         </div>
 
         <div>
-          <p className="font-semibold text-[10px]">
+          <p className="text-[10px] font-semibold">
             *Expections may apply, see our{" "}
             <span className="text-blue-600">Terms of Use</span>.
           </p>
