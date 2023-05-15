@@ -25,6 +25,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
   control,
   reset,
 }) => {
+  const hasShowId = !!showInfo?.value;
+  const hasTicketQuantity = !!ticketQuantity?.value;
   return (
     <>
       <div className="bg-gray col-span-2 col-start-4 row-span-4 row-start-1 rounded-md border-2 border-gray-300 bg-white p-4 text-black">
@@ -32,7 +34,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         <div className="flex justify-between pb-4">
           <h4>Total</h4>
           <div>
-            {showInfo && ticketQuantity
+            {hasShowId && ticketQuantity
               ? getTotalPrice(mockShows, ticketQuantity, showInfo)
               : SERVICE_FEE + PROCESSING_FEE}
           </div>
@@ -41,7 +43,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         <div className="flex justify-between pb-4">
           <h4>Tickets</h4>
           <div>
-            {showInfo && ticketQuantity
+            {hasShowId && hasTicketQuantity
               ? `Tickets: $${mockShows[showInfo?.value]?.price || 0} x ${
                   ticketQuantity.value
                 }`
@@ -53,7 +55,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
           <p>Notes About Show</p>
           <div className="min-h-20 h-20 max-h-20 overflow-auto">
             <div className="min-h-20 h-20 max-h-20 overflow-auto border-2 border-gray-100">
-              {showInfo ? (
+              {hasShowId ? (
                 <p>{mockShows[showInfo?.value]?.note}</p>
               ) : (
                 <p className="text-sm text-gray-500">Please Select A Show...</p>
@@ -68,9 +70,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
           <div className="flex justify-between pb-4">
             <p>
               Service Fee: ${SERVICE_FEE}{" "}
-              {ticketQuantity?.value ? `x ${ticketQuantity?.value}` : "x 1"}
+              {hasTicketQuantity ? `x ${ticketQuantity?.value}` : "x 1"}
             </p>
-            {ticketQuantity
+            {hasTicketQuantity
               ? `$${ticketQuantity.value * SERVICE_FEE}`
               : SERVICE_FEE}
           </div>
