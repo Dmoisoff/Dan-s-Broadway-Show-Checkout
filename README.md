@@ -29,14 +29,18 @@ Light validation with error messages
 
 ## Screenshots
 
+
 Default View
-![Default View](https://i.imgur.com/L3pNgQpm.png)
+
+![Default View](https://i.imgur.com/L3pNgQpl.png)
 
 Successful Submission
-![Successful Submission](https://i.imgur.com/L078BZvm.png)
+
+![Successful Submission](https://i.imgur.com/L078BZvl.png)
 
 Validations
-![Validations](https://i.imgur.com/L078BZvm.png)
+
+![Validations](https://i.imgur.com/HrubaPpl.png)
 
 
 ## Run Locally
