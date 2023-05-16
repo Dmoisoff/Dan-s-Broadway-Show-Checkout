@@ -3,12 +3,14 @@ import Select from "react-select";
 import { Control, Controller } from "react-hook-form";
 import { mockShows } from "~/utils/mockdata";
 import { TICKET_QUANTITY_OPTIONS } from "~/utils/const";
+import { ErrorMessage } from "@hookform/error-message";
 
 interface SelectShowDetailsProps {
   control: Control;
+  errors: FormState<FieldValues>;
 }
 
-const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
+const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control,errors, }) => {
   const dropDownOptions = Object.values(mockShows).map((show) => ({
     value: show.id,
     label: `${show.name} - $${show.price}`,
@@ -21,7 +23,7 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
       </h3>
       <div className="flex w-full justify-evenly pt-4">
         {/*  */}
-        <div>
+        <div className="">
           <div className=" flex w-8/12 flex-row items-center ">
             <h6 className="text-1xl pr-2">Show:</h6>
             <Controller
@@ -38,9 +40,10 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
                   placeholder={"Select Show..."}
                 />
               )}
-              rules={{ required: true }}
+              rules={{ required: "Please select a show" }}
             />
           </div>
+          {errors?.show && <div className="absolute  text-red-600"><ErrorMessage errors={errors} name="show" /></div> }
         </div>
 
         <div className=" flex w-4/12 flex-row items-center ">

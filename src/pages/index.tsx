@@ -103,19 +103,16 @@ const Home: NextPage = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className=" grid h-5/6 min-w-[1150px] grid-cols-5 grid-rows-5 gap-4">
-              {/* show picker */}
-
-              <SelectShowDetails control={control} />
-
-              {/* payment details */}
+              <SelectShowDetails 
+              control={control}
+              errors={errors}
+              />
               <PaymentDetails
                 register={register}
                 getValues={getValues}
                 control={control}
                 errors={errors}
               />
-
-              {/* summary */}
               <OrderDetails
                 showInfo={showInfo}
                 ticketQuantity={ticketQuantity}
