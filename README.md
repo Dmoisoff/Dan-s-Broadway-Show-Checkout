@@ -69,3 +69,20 @@ Start the dev server
    npm run dev
 ```
 
+
+## Running Tests
+
+To run cypress.io tests,
+
+Start the dev server
+
+```bash
+   npm run dev
+```
+Then in a seperate window start the test server
+
+```bash
+  npm run cypress-ui
+```
+
+

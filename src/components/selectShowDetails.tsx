@@ -34,8 +34,7 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control,errors, }
                 <Select
                   {...field}
                   classNames={{
-                    control: () =>
-                      "border border-gray-300 rounded-md  w-max",
+                    control: () => "border border-gray-300 rounded-md  w-max",
                   }}
                   options={dropDownOptions}
                   placeholder={"Select Show..."}
@@ -44,7 +43,11 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control,errors, }
               rules={{ required: "Please select a show" }}
             />
           </div>
-          {errors?.show && <div className="absolute  text-red-600"><ErrorMessage errors={errors} name="show" /></div> }
+          {errors?.show && (
+            <div className="absolute  text-red-600">
+              <ErrorMessage errors={errors} name="show" />
+            </div>
+          )}
         </div>
 
         <div className=" flex w-4/12 flex-row items-center ">
@@ -55,6 +58,7 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control,errors, }
             render={({ field }) => (
               <Select
                 {...field}
+                data-test-id="ticketQuantity"
                 classNames={{
                   control: () => "border border-gray-300 rounded-md",
                 }}
