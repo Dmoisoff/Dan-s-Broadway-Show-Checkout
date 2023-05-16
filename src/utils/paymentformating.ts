@@ -1,4 +1,4 @@
-import { Shows } from "~/types/types";
+import { type Shows } from "~/types/types";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 
 export const formatDate = (event: React.ChangeEvent<HTMLInputElement>) => {

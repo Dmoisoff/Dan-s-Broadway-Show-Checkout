@@ -23,3 +23,13 @@ export type OrderData = {
   terms: boolean;
   ticketQuantity: Option;
 };
+
+export type FormValues = {
+  card: string;
+  name: string;
+  cvv: string;
+  expiry: string;
+  show: string;
+  terms: string;
+  ticketQuantity: string;
+}

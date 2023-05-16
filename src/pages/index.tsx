@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useForm, Controller, useWatch } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import SelectShowDetails from "~/components/selectShowDetails";
 import PaymentDetails from "~/components/paymentDetails";
 import OrderDetails from "~/components/orderDetails";
