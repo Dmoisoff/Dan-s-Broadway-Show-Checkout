@@ -124,7 +124,10 @@ const Home: NextPage = () => {
           </form>
           <button
             className="h-5 w-5 bg-red-100"
-            onClick={() => console.log(getValues())}
+            onClick={() =>{ 
+              console.log(getValues())
+              console.log(errors)
+            }}
           />
         </div>
       </main>

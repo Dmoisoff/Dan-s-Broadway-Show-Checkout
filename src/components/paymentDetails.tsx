@@ -26,10 +26,12 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
   const [isCardFieldFull, setIsCardFieldFull] = useState<boolean>(false);
   const [isExpiryFieldFull, setIsExpiryFieldFull] = useState<boolean>(false);
   const [isCvvFull, setIsCvvFull] = useState<boolean>(false);
+  const [isCardFieldLessThanMax, setIsCardFieldLessThanMax] = useState<boolean>(true);
 
   const handleCardInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     formatCard(event);
     setIsCardFieldFull(event.target.value.length === 19);
+    setIsCardFieldLessThanMax(event.target.value.length < 19);
   };
 
   const handleExpiryInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +90,6 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             {...register("card", {
               required: "Fill out completely",
               minLength: 19,
-              maxLength: 19,
             })}
             onChange={handleCardInput}
           />
@@ -99,9 +100,9 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
           {isCardFieldFull && (
             <i className="fa fa-check absolute right-2 top-[14px] text-base text-green-400"></i>
           )}{" "}
-          {!isCardFieldFull && errors?.card && (
+          {isCardFieldLessThanMax && errors?.card && (
             <span className="absolute right-2 top-[12px] text-red-600">
-              <ErrorMessage errors={errors} name="card" />
+              Fill out completely
             </span>
           )}
         </div>
