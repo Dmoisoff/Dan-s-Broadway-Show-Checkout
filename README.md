@@ -1,28 +1,67 @@
-# Create T3 App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+# Dan’s Broadway Show Checkout
 
-## What's next? How do I make an app with this?
+A demo front end that allows users to select a Broadway show, enter basic billing information, and checkout.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Upon successful checkout, the user is alerted that the checkout has completed.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+To simulate calls to a payment service and a backend, I have added two console logs. One logs the billing information, and the other logs platform-related information that would be sent to the backend.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Tech Stack
 
-## Learn More
+**Client:** React, Typescript , TailwindCSS, React Hook Form, React Select
+## Authors
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- [@dmoisoff](https://www.github.com/Dmoisoff)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Features
 
-## How do I deploy this?
+Light validation with error messages
+ 
+- show selection check
+- full name check
+- credit card character length check
+- expiration date character length check
+- CVV character length check
+- terms of service agreement check
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+
+## Screenshots
+
+Default View
+![Default View](https://i.imgur.com/L3pNgQpm.png)
+
+Successful Submission
+![Successful Submission](https://i.imgur.com/L078BZvm.png)
+
+Validations
+![Validations](https://i.imgur.com/L078BZvm.png)
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Dmoisoff/Dan-s-Broadway-Show-Checkout
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the dev server
+
+```bash
+   npm run dev
+```
+
