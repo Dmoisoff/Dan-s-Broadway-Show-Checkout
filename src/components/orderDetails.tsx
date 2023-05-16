@@ -43,7 +43,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
                   ticketQuantity.value,
                   showInfo.value
                 ).toFixed(2)}`
-              : `$${SERVICE_FEE + PROCESSING_FEE}`}
+              : <p className="text-sm font-light">...</p>}
           </div>
         </div>
 
@@ -61,9 +61,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         <div className=" pb-4">
           <p className="font-Roboto pb-2 font-semibold">Notes About Show</p>
           <div className="min-h-20 h-20 max-h-20 overflow-auto">
-            <div className="min-h-20 h-20 max-h-20 overflow-auto border-4 border-gray-200">
+            <div className="min-h-20 h-20 max-h-20 overflow-auto ">
               {hasShowId ? (
-                <p className="pl-2 text-sm font-light">
+                <p className=" text-sm font-light">
                   {mockShows[showInfo?.value]?.note}
                 </p>
               ) : (

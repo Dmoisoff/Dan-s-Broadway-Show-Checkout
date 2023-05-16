@@ -31,7 +31,8 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
                 <Select
                   {...field}
                   classNames={{
-                    control: () => "border border-gray-300 rounded-md w-48",
+                    control: () =>
+                      "border border-gray-300 rounded-md  w-max",
                   }}
                   options={dropDownOptions}
                   placeholder={"Select Show..."}
@@ -61,9 +62,9 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
             )}
             rules={{ required: true }}
             defaultValue={{
-                  value: 1,
-                  label: 1,
-                }}
+              value: 1,
+              label: 1,
+            }}
           />
         </div>
       </div>
