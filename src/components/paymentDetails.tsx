@@ -44,6 +44,27 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
     setIsCvvFull(event.target.value.length === 3);
   };
 
+  const validateFullName = (value) => {
+    if (!value.includes(" ")) {
+      return "Full name is required";
+    }
+    return true;
+  };
+
+  const validateExpiryLength = (value) => {
+    if(value.length < 7) {
+        return "Fill out completely"
+    }
+    return true;
+}
+
+  const validateCvvLength = (value) => {
+    if(value.length < 3) {
+        return "Fill out completely"
+    }
+    return true;
+}
+
   //   const watchedCardField: { card: string } = useWatch({
   //     control,
   //     name: "card",
@@ -67,7 +88,8 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             className="font-Roboto h-12 w-full border-2 px-2 pl-7 outline-none transition-all focus:border-blue-900"
             placeholder="John Doe"
             {...register("name", {
-              required: "Enter a name",
+              required: "Full name is required",
+              validate: validateFullName
             })}
           />{" "}
           <span className="font-Roboto absolute -top-6 left-0 text-sm">
@@ -117,8 +139,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               maxLength={7}
               {...register("expiry", {
                 required: "Fill out completely",
-                minLength: 7,
-                maxLength: 7,
+                validate: validateExpiryLength,
               })}
               onChange={handleExpiryInput}
             />{" "}
@@ -146,8 +167,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               maxLength={3}
               {...register("cvv", {
                 required: "Fill out completely",
-                minLength: 3,
-                maxLength: 3,
+                validate: validateCvvLength,
               })}
               onChange={handleCvvInput}
             />{" "}
