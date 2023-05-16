@@ -104,7 +104,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         </div>
 
         <div className="font-Roboto pb-6 text-sm font-semibold  text-blue-600">
-          <Link href="" onClick={() => reset({ show: { label: "", value: 0 },
+          <Link href="" onClick={() => reset({ show: "",
       ticketQuantity: { label: 1, value: 1 }, })}>
             Reset Order
           </Link>

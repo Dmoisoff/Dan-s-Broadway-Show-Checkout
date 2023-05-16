@@ -3,8 +3,8 @@ import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 
 export const formatDate = (event: React.ChangeEvent<HTMLInputElement>) => {
   const inputValue: string = event?.target?.value;
-  const cleanedValue = inputValue.replace(/\D/g, "");
-  const formattedValue = cleanedValue.replace(/^(\d{2})/, "$1/");
+  const cleanedValue = inputValue.replace(/\D+!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|/g, "");
+  const formattedValue = cleanedValue.replace(/^(..)(.)/, "$1/");
   event.target.value = formattedValue;
 };
 
