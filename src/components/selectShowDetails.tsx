@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { type Control, Controller, DeepMap, FieldError } from "react-hook-form";
+import { type Control, Controller, type DeepMap, type FieldError } from "react-hook-form";
 import { mockShows } from "~/utils/mockdata";
 import { TICKET_QUANTITY_OPTIONS } from "~/utils/const";
 import { ErrorMessage } from "@hookform/error-message";
