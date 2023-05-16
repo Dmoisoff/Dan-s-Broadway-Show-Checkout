@@ -57,10 +57,13 @@ const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control }) => {
                   value: item,
                   label: item,
                 }))}
-                placeholder={"0"}
               />
             )}
             rules={{ required: true }}
+            defaultValue={{
+                  value: 1,
+                  label: 1,
+                }}
           />
         </div>
       </div>

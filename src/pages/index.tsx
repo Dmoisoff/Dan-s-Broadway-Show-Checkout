@@ -25,7 +25,7 @@ const Home: NextPage = () => {
     name: ["show", "ticketQuantity"],
     defaultValue: {
       show: { label: "", value: 0 },
-      ticketQuantity: { label: "", value: 0 },
+      ticketQuantity: { label: 1, value: 1 },
     },
   });
 
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
     if (res.status === 200) {
       // send info to backend
       console.log(data);
-      alert("payment successful");
+      alert("Payment successful! Enjoy the show.");
     } else {
       console.error("Error");
     }
@@ -127,7 +127,7 @@ const Home: NextPage = () => {
           </form>
           <button
             className="h-5 w-5 bg-red-100"
-            onClick={() => console.log(errors)}
+            onClick={() => console.log(getValues())}
           />
         </div>
       </main>

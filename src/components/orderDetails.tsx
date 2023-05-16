@@ -34,7 +34,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
   return (
     <>
       <div className="bg-gray col-span-2 col-start-4 row-span-4 row-start-1 rounded-md border-2 border-gray-300 bg-white p-4 text-black ">
-        <div className="font-Roboto flex justify-between pb-4 text-lg font-semibold">
+        <div className="flex justify-between pb-4 font-sans text-lg font-semibold">
           <h4>Total</h4>
           <div>
             {hasShowId && ticketQuantity
@@ -104,7 +104,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({
         </div>
 
         <div className="font-Roboto pb-6 text-sm font-semibold  text-blue-600">
-          <Link href="" onClick={() => reset({ show: "", ticketQuantity: 0 })}>
+          <Link href="" onClick={() => reset({ show: { label: "", value: 0 },
+      ticketQuantity: { label: 1, value: 1 }, })}>
             Reset Order
           </Link>
         </div>

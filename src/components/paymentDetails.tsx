@@ -65,7 +65,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             className="font-Roboto h-12 w-full border-2 px-2 pl-7 outline-none transition-all focus:border-blue-900"
             placeholder="John Doe"
             {...register("name", {
-              required: "This is required.",
+              required: "Enter a name",
             })}
           />{" "}
           <span className="font-Roboto absolute -top-6 left-0 text-sm">
@@ -86,7 +86,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             placeholder="0000 0000 0000 0000"
             maxLength={19}
             {...register("card", {
-              required: "Fill Out Completely",
+              required: "Fill out completely",
               minLength: 19,
               maxLength: 19,
             })}
@@ -115,7 +115,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               data-slots="my"
               maxLength={7}
               {...register("expiry", {
-                required: "Fill Out Completely",
+                required: "Fill out completely",
                 minLength: 7,
                 maxLength: 7,
               })}
@@ -144,7 +144,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               data-accept="\d"
               maxLength={3}
               {...register("cvv", {
-                required: "Fill Out Completely",
+                required: "Fill out completely",
                 minLength: 3,
                 maxLength: 3,
               })}
