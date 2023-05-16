@@ -1,13 +1,14 @@
 import React from "react";
 import Select from "react-select";
-import { Control, Controller } from "react-hook-form";
+import { type Control, Controller, DeepMap, FieldError } from "react-hook-form";
 import { mockShows } from "~/utils/mockdata";
 import { TICKET_QUANTITY_OPTIONS } from "~/utils/const";
 import { ErrorMessage } from "@hookform/error-message";
+import { type FormValues } from "~/types/types";
 
 interface SelectShowDetailsProps {
   control: Control;
-  errors: FormState<FieldValues>;
+  errors: DeepMap<FormValues, FieldError>;
 }
 
 const SelectShowDetails: React.FC<SelectShowDetailsProps> = ({ control,errors, }) => {

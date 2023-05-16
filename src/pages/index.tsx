@@ -97,16 +97,14 @@ const Home: NextPage = () => {
         <div className="h-screen w-9/12">
           <div className="flex min-w-[1150px] justify-center">
             <h1 className="gap-12 px-4 py-10 text-5xl font-semibold">
-              Dan's <span className="text-[hsl(280,100%,70%)]">Broadway Show</span>{" "}
+              Dan&apos;s{" "}
+              <span className="text-[hsl(280,100%,70%)]">Broadway Show</span>{" "}
               Checkout Page
             </h1>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className=" grid h-5/6 min-w-[1150px] grid-cols-5 grid-rows-5 gap-4">
-              <SelectShowDetails 
-              control={control}
-              errors={errors}
-              />
+              <SelectShowDetails control={control} errors={errors} />
               <PaymentDetails
                 register={register}
                 getValues={getValues}
@@ -124,9 +122,9 @@ const Home: NextPage = () => {
           </form>
           <button
             className="h-5 w-5 bg-red-100"
-            onClick={() =>{ 
-              console.log(getValues())
-              console.log(errors)
+            onClick={() => {
+              console.log(getValues());
+              console.log(errors);
             }}
           />
         </div>

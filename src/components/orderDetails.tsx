@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PROCESSING_FEE, SERVICE_FEE } from "~/utils/const";
 import { mockShows } from "~/utils/mockdata";
 import { type Option } from "~/types/types";
@@ -8,7 +8,7 @@ import {
   Controller,
   type FieldValues,
   type UseFormReset,
-  UseFormGetValues,
+  type UseFormGetValues,
 } from "react-hook-form";
 import Button from "./button";
 import { getTotalPrice } from "~/utils/paymentFormating";

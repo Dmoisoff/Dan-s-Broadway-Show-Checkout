@@ -2,25 +2,20 @@ import React, { useState } from "react";
 import {
   type UseFormRegister,
   type FieldValues,
-  type UseFormGetValues,
-  useWatch,
-  Control,
-  type FormState,
+  type DeepMap,
+  type FieldError,
 } from "react-hook-form";
 import { formatCard, formatDate, formatCVV } from "~/utils/paymentFormating";
 import { ErrorMessage } from "@hookform/error-message";
+import { type FormValues } from "~/types/types";
 
 interface PaymentDetailsProps {
   register: UseFormRegister<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
-  control: Control;
-  errors: FormState<FieldValues>;
+  errors: DeepMap<FormValues, FieldError>;
 }
 
 const PaymentDetails: React.FC<PaymentDetailsProps> = ({
   register,
-  getValues,
-  control,
   errors,
 }) => {
   const [isCardFieldFull, setIsCardFieldFull] = useState<boolean>(false);
@@ -44,36 +39,26 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
     setIsCvvFull(event.target.value.length === 3);
   };
 
-  const validateFullName = (value) => {
+  const validateFullName = (value: string) => {
     if (!value.includes(" ")) {
       return "Full name is required";
     }
     return true;
   };
 
-  const validateExpiryLength = (value) => {
-    if(value.length < 7) {
-        return "Fill out completely"
+  const validateExpiryLength = (value: string) => {
+    if (value.length < 7) {
+      return "Fill out completely";
     }
     return true;
-}
+  };
 
-  const validateCvvLength = (value) => {
-    if(value.length < 3) {
-        return "Fill out completely"
+  const validateCvvLength = (value: string) => {
+    if (value.length < 3) {
+      return "Fill out completely";
     }
     return true;
-}
-
-  //   const watchedCardField: { card: string } = useWatch({
-  //     control,
-  //     name: "card",
-  //     defaultValue: {
-  //       card: "",
-  //     },
-  //   });
-
-  //   console.log(watchedCardField);
+  };
 
   return (
     <div className="bg-gray row-start-23 col-span-3 col-start-1 row-span-3 rounded-md border-2 border-gray-300 bg-white p-4 text-black">
