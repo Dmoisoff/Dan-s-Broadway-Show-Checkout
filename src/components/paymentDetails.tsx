@@ -5,19 +5,23 @@ import {
   type UseFormGetValues,
   useWatch,
   Control,
+  type FormState,
 } from "react-hook-form";
 import { formatCard, formatDate, formatCVV } from "~/utils/paymentFormating";
+import { ErrorMessage } from "@hookform/error-message";
 
 interface PaymentDetailsProps {
   register: UseFormRegister<FieldValues>;
   getValues: UseFormGetValues<FieldValues>;
   control: Control;
+  errors: FormState<FieldValues>;
 }
 
 const PaymentDetails: React.FC<PaymentDetailsProps> = ({
   register,
   getValues,
   control,
+  errors,
 }) => {
   const [isCardFieldFull, setIsCardFieldFull] = useState<boolean>(false);
   const [isExpiryFieldFull, setIsExpiryFieldFull] = useState<boolean>(false);
@@ -61,14 +65,20 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             className="font-Roboto h-12 w-full border-2 px-2 pl-7 outline-none transition-all focus:border-blue-900"
             placeholder="John Doe"
             {...register("name", {
-              required: true,
+              required: "This is required.",
             })}
           />{" "}
           <span className="font-Roboto absolute -top-6 left-0 text-sm">
             Cardholder Name
           </span>{" "}
           <i className="fa fa-user absolute left-2 top-4 text-gray-400"></i>{" "}
+          {errors?.name && (
+            <span className="absolute right-2 top-[12px] text-red-600">
+              <ErrorMessage errors={errors} name="name" />
+            </span>
+          )}
         </div>
+
         <div className="input_text relative mt-8">
           <input
             type="tel"
@@ -76,7 +86,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             placeholder="0000 0000 0000 0000"
             maxLength={19}
             {...register("card", {
-              required: true,
+              required: "Fill Out Completely",
               minLength: 19,
               maxLength: 19,
             })}
@@ -89,6 +99,11 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
           {isCardFieldFull && (
             <i className="fa fa-check absolute right-2 top-[14px] text-base text-green-400"></i>
           )}{" "}
+          {!isCardFieldFull && errors?.card && (
+            <span className="absolute right-2 top-[12px] text-red-600">
+              <ErrorMessage errors={errors} name="card" />
+            </span>
+          )}
         </div>
         <div className="mt-8 flex gap-5 ">
           <div className="input_text relative w-full">
@@ -100,7 +115,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               data-slots="my"
               maxLength={7}
               {...register("expiry", {
-                required: true,
+                required: "Fill Out Completely",
                 minLength: 7,
                 maxLength: 7,
               })}
@@ -113,6 +128,11 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             {isExpiryFieldFull && (
               <i className="fa fa-check absolute right-2 top-[14px] text-base text-green-400"></i>
             )}{" "}
+            {!isExpiryFieldFull && errors?.expiry && (
+              <span className="absolute right-2 top-[12px] text-red-600">
+                <ErrorMessage errors={errors} name="expiry" />
+              </span>
+            )}
           </div>
           <div className="input_text relative w-full">
             {" "}
@@ -124,7 +144,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               data-accept="\d"
               maxLength={3}
               {...register("cvv", {
-                required: true,
+                required: "Fill Out Completely",
                 minLength: 3,
                 maxLength: 3,
               })}
@@ -137,6 +157,11 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             {isCvvFull && (
               <i className="fa fa-check absolute right-2 top-[14px] text-base text-green-400"></i>
             )}{" "}
+            {!isCvvFull && errors?.cvv && (
+              <span className="absolute right-2 top-[12px] text-red-600">
+                <ErrorMessage errors={errors} name="cvv" />
+              </span>
+            )}
           </div>
         </div>
       </div>

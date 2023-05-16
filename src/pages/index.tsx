@@ -11,7 +11,14 @@ import { getTotalPrice } from "~/utils/paymentFormating";
 type WatchedFields = Option[];
 
 const Home: NextPage = () => {
-  const { register, handleSubmit, control, reset, getValues } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm();
 
   const watchedFields: WatchedFields = useWatch({
     control,
@@ -105,6 +112,7 @@ const Home: NextPage = () => {
                 register={register}
                 getValues={getValues}
                 control={control}
+                errors={errors}
               />
 
               {/* summary */}
@@ -119,7 +127,7 @@ const Home: NextPage = () => {
           </form>
           <button
             className="h-5 w-5 bg-red-100"
-            onClick={() => console.log(getValues("card"))}
+            onClick={() => console.log(errors)}
           />
         </div>
       </main>
