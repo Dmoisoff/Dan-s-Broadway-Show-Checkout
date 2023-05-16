@@ -96,9 +96,9 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
         <div className="h-screen w-9/12">
           <div className="flex min-w-[1150px] justify-center">
-            <h1 className="gap-12 px-4 py-16 text-5xl font-extrabold tracking-tight text-black sm:text-[5rem]">
-              Mock <span className="text-[hsl(280,100%,70%)]">Checkout</span>{" "}
-              Page
+            <h1 className="gap-12 px-4 py-10 text-5xl font-semibold">
+              Dan's <span className="text-[hsl(280,100%,70%)]">Broadway Show</span>{" "}
+              Checkout Page
             </h1>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
