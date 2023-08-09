@@ -1,15 +1,15 @@
 
 # Dan’s Broadway Show Checkout
 
-A demo front end that allows users to select a Broadway show, enter basic billing information, and checkout.
+A demo front end that allows users to select a Broadway show, enter basic billing information, and checkout. Built for coding challenge over the weekend.
 
-Upon successful checkout, the user is alerted that the checkout has completed.
+Upon successful checkout, the user is alerted that the checkout has been completed.
 
-To simulate calls to a payment service and a backend, I have added two console logs. One logs the billing information, and the other logs platform-related information that would be sent to the backend.
+To simulate calls to a payment service and a backend, I have added two console logs. One logs the billing information and the other logs platform-related information that would be sent to the backend.
 
 ## Tech Stack
 
-**Client:** React, Typescript , TailwindCSS, React Hook Form, React Select
+**Client:** React, Typescript, TailwindCSS, React Hook Form, React Select
 ## Authors
 
 - [@dmoisoff](https://www.github.com/Dmoisoff)
